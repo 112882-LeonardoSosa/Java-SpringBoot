@@ -1,0 +1,44 @@
+<h1 class="animate__animated animate__bounce">Empleados Registrados</h1>
+<hr>
+<div class="row text-right">
+  <div class="col">
+    <button routerLink="/empleado" class="btn btn-primary">
+      <i class="fa fa-plus"></i>
+      Agregar
+    </button>
+  </div>
+</div>
+
+<table class="table mt-3 animated fadeIn faster animated fadeIn faster">
+  <thead class="thead-dark text-center">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Fecha de Ingreso</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Legajo</th>
+      <th scope="col">Area</th>
+      <th scope="col">Antiguedad</th>
+      <th scope="col">Sueldo Bruto</th>
+      <th scope="col">Fecha de Nacimiento</th>
+    </tr>
+  </thead>
+  <tbody class="text-center">
+    <tr *ngFor="let emp of listaEmpleados; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{emp.fechaIngreso | date:"dd/MM/yyyy"}}</td>
+      <td>{{emp.nombre}}</td>
+      <td>{{emp.legajo}}</td>
+      <td>{{emp.area.nombre}}</td>
+      <td>{{emp.antiguedad}}</td>
+      <td>{{emp.sueldoBruto}}</td>
+      <td>{{emp.fechaNacimiento | date:"dd/MM/yyyy"}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!cargando" class="alert alert-warning text-center mt-3">
+  <h4 class="alert-heading">No hay registros</h4>
+  <p>
+    <i class="fa fa-exclamation fa-2x"></i>
+  </p>
+</div>

@@ -1,0 +1,60 @@
+<div class="container mt-3">
+    <h1 class="animate__animated animate__bounce">Alta Empleado</h1>
+<hr>
+    <form [formGroup]="formularioAlta">
+      <div class="row">
+        <div class="mb-3 col-4">
+            <label for="" class="form-label">Fecha de Ingreso</label>
+            <input type="date" formControlName="fechaIngreso" class="form-control" >
+            <span class="text-danger" *ngIf="!fechaIngreso?.valid">*Debe Ingresar una Fecha de Ingreso</span>
+          </div>
+        <div class="mb-3 col-4">
+          <label for="" class="form-label">Nombre</label>
+          <input type="text" formControlName="nombre" class="form-control" id="">
+          <span class="text-danger" *ngIf="!nombre?.valid">*Campo Obligatorio</span>
+        </div>
+        <div class="mb-3 col-4">
+          <label for="" class="form-label">Legajo</label>
+          <input type="number" formControlName="legajo" class="form-control" id="">
+          <span class="text-danger" *ngIf="!legajo?.valid">*Campo Obligatorio</span>
+          <span class="text-danger" *ngIf="legajo?.errors?.['minLength']">*El Nro de Socio debe ser de 5 digitos</span>
+          <span class="text-danger" *ngIf="legajo?.errors?.['maxLength']">*El Nro de Socio debe ser de 5 digitos</span>
+        </div>
+        <div class="mb-3 col-4">
+          <label for="" class="form-label">Área</label>
+          <select [(ngModel)]="areaSeleccionada"  class="form-control" formControlName="area" id="">
+              <option selected value="0">Seleccione un Área</option>
+              <option *ngFor="let area of areas" [ngValue]="area">{{area.nombre}}</option>
+            </select>
+            <span class="text-danger" *ngIf="!area?.valid">*Debe Seleccionar un Área</span>
+        </div>
+            <div class="mb-3 col-4">
+                <label for="" class="form-label">Antiguedad</label>
+                <input type="number" formControlName="antiguedad" class="form-control" id="">            
+              </div>
+              <div class="mb-3 col-4">
+                <label for="" class="form-label">Sueldo Bruto</label>
+                <input type="number" formControlName="sueldoBruto" class="form-control" id="">
+                <span class="text-danger" *ngIf="!sueldoBruto?.valid">*Campo Obligatorio</span>
+                <span class="text-danger" *ngIf="sueldoBruto?.errors?.['minLength']">*El Nro de Socio debe ser de 5 digitos</span>
+                <span class="text-danger" *ngIf="sueldoBruto?.errors?.['maxLength']">*El Nro de Socio debe ser de 5 digitos</span>
+              </div>
+        <div class="mb-3 col-4">
+          <label for="" class="form-label">Fecha Nacimiento</label>
+          <input type="date" formControlName="fechaNacimiento" class="form-control">
+          <span class="text-danger" *ngIf="!fechaNacimiento?.valid">*Debe Ingresar una Fecha de Nacimiento</span>
+        </div>
+      </div>
+      <!-- [disabled]="!formularioAlta.valid"  -->
+      <button (click)="agregar()" class="btn btn-primary mt-3">Guardar</button>
+    </form>
+  </div>
+  <hr>
+  <div class="container">
+    <input class="form-control mt-3" type="text" placeholder="{{formularioAlta.value | json}}">
+    <input class="form-control  mt-3" type="text" placeholder="{{formularioAlta.status}}">
+  </div>
+  
+  <hr>
+  <app-lista-empleados></app-lista-empleados>
+ 
